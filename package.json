@@ -1,0 +1,52 @@
+{
+  "name": "git-assist",
+  "version": "1.0.0",
+  "description": "A production-ready CLI tool for git assistance",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "git-assist": "./bin/git-assist.js"
+  },
+  "scripts": {
+    "start": "node bin/git-assist.js",
+    "dev": "nodemon bin/git-assist.js",
+    "test": "echo \"Tests not yet implemented.\" && exit 0",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "cli",
+    "git",
+    "developer-tools",
+    "productivity"
+  ],
+  "license": "MIT",
+  "author": "Your Name <you@example.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/git-assist.git"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "chokidar": "^3.6.0",
+    "commander": "^11.1.0",
+    "cosmiconfig": "^8.3.6",
+    "dotenv": "^16.6.1",
+    "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ]
+}
