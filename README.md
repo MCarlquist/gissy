@@ -1,29 +1,34 @@
-# Git Assist
+# Gissy
 
-A production-ready CLI tool for enhanced git operations and repository management with automated workflows.
+<p align="center">
+  <strong>A powerful CLI assistant to supercharge your Git workflow.</strong>
+</p>
 
-## 🚀 Features
+<p align="center">
+  <a href="https://www.npmjs.com/package/@exodus-tola-mindcoder/gissy"><img src="https://img.shields.io/npm/v/@exodus-tola-mindcoder/gissy.svg" alt="NPM Version"></a>
+  <a href="https://github.com/exodus-tola-mindCoder/Git-Assist/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@exodus-tola-mindcoder/gissy.svg" alt="License"></a>
+  <a href="https://github.com/exodus-tola-mindCoder/Git-Assist/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+</p>
 
-- **Enhanced Status**: Get a clean, colorful overview of your repository status
-- **Repository Info**: View detailed information about your current repository
-- **Branch Management**: List and manage branches with additional context
-- **Smart File Watcher**: Monitor file changes with automated testing, linting, and git operations
-- **AI-Powered Commits**: Generate intelligent commit messages using OpenAI
-- **Configurable Workflows**: Customize behavior with `.gitassistrc` configuration
-- **Production Ready**: Built with modern Node.js best practices
+---
 
-## 📋 Requirements
+**Gissy** is a smart command-line tool designed to automate your repetitive Git tasks. From providing an enhanced `git status` to watching your files, running tests, and generating AI-powered commit messages, Gissy is your personal Git assistant.
 
-- Node.js >= 16.0.0
-- Git installed and accessible from command line
-- Optional: OpenAI API key for AI-powered commit messages
+## ✨ Key Features
+
+-   **Enhanced Git Commands**: Clean, colorful, and informative outputs for `status`, `info`, and `branch` commands.
+-   **Intelligent File Watcher**: Automatically detects file changes in your repository.
+-   **Automated Workflow**: Runs your tests and linter, then stages, commits, and pushes your changes seamlessly.
+-   **AI-Powered Commits**: Leverages OpenAI to generate meaningful and conventional commit messages from your code diffs.
+-   **Highly Configurable**: Customize every part of the workflow using a simple `.gissyrc.json` file in your project.
+-   **Zero-Config Ready**: Works out of the box with sensible defaults for most projects.
 
 ## 🛠️ Installation
 
-### Global Installation (Recommended)
+Ensure you have **Node.js v16+** and **Git** installed.
 
 ```bash
-npm install -g git-assist
+npm install -g @exodus-tola-mindcoder/gissy
 ```
 
 ### Local Development

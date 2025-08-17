@@ -36,7 +36,7 @@ export function startWatcher(options = {}) {
   // Combine default, config, and custom ignore patterns
   const ignorePatterns = [...defaultIgnorePatterns, ...config.watchIgnore, ...ignore];
 
-  printHeader('👀 Git Assist - Enhanced File Watcher');
+  printHeader('👀 Gissy - Enhanced File Watcher');
 
   if (verbose) {
     console.log(chalk.gray('Verbose mode enabled'));

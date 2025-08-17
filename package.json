@@ -1,14 +1,14 @@
 {
-  "name": "git-assist",
+  "name": "@exodus-tola-mindcoder/gissy",
   "version": "1.0.0",
   "description": "A production-ready CLI tool for enhanced git operations and repository management with automated workflows",
   "type": "module",
   "main": "src/index.js",
   "bin": {
-    "git-assist": "./bin/git-assist.js"
+    "gissy": "./bin/gissy.js"
   },
   "scripts": {
-    "start": "node bin/git-assist.js",
+    "start": "node bin/gissy.js",
     "test": "echo \"Tests not yet implemented, but Jest is set up!\" && exit 0",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",

@@ -14,7 +14,7 @@ export function createCommand() {
   const program = new Command();
 
   program
-    .name('git-assist')
+    .name('gissy')
     .description('A production-ready CLI tool for git assistance')
     .version('1.0.0');
 
@@ -58,7 +58,7 @@ export function createCommand() {
  */
 async function handleStatus() {
   try {
-    printHeader('🔍 Git Assist - Enhanced Status');
+    printHeader('🔍 Gissy - Enhanced Status');
     
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
@@ -105,7 +105,7 @@ async function handleStatus() {
  */
 async function handleInfo() {
   try {
-    printHeader('📊 Git Assist - Repository Information');
+    printHeader('📊 Gissy - Repository Information');
 
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
@@ -156,7 +156,7 @@ async function handleInfo() {
  */
 async function handleBranch(options) {
   try {
-    printHeader('🌿 Git Assist - Branch Information');
+    printHeader('🌿 Gissy - Branch Information');
 
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
