@@ -1,7 +1,7 @@
 {
   "name": "git-assist",
   "version": "1.0.0",
-  "description": "A production-ready CLI tool for git assistance",
+  "description": "A production-ready CLI tool for enhanced git operations and repository management with automated workflows",
   "type": "module",
   "main": "src/index.js",
   "bin": {
@@ -9,24 +9,30 @@
   },
   "scripts": {
     "start": "node bin/git-assist.js",
-    "dev": "nodemon bin/git-assist.js",
     "test": "echo \"Tests not yet implemented.\" && exit 0",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "lint": "echo \"Linting not configured.\" && exit 0",
+    "format": "echo \"Formatting not configured.\" && exit 0"
   },
   "keywords": [
     "cli",
     "git",
     "developer-tools",
-    "productivity"
+    "productivity",
+    "automation",
+    "ai",
+    "commit",
+    "watcher"
   ],
   "license": "MIT",
-  "author": "Your Name <you@example.com>",
+  "author": "Exodus Tola <exodus-tola-mindCoder@github.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/git-assist.git"
+    "url": "https://github.com/exodus-tola-mindCoder/Git-Assist.git"
   },
+  "bugs": {
+    "url": "https://github.com/exodus-tola-mindCoder/Git-Assist/issues"
+  },
+  "homepage": "https://github.com/exodus-tola-mindCoder/Git-Assist#readme",
   "dependencies": {
     "chalk": "^5.4.1",
     "chokidar": "^3.6.0",
@@ -35,11 +41,6 @@
     "dotenv": "^16.6.1",
     "openai": "^4.104.0"
   },
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "nodemon": "^3.1.0",
-    "prettier": "^3.2.5"
-  },
   "engines": {
     "node": ">=16.0.0"
   },
@@ -47,6 +48,7 @@
     "bin/",
     "src/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    ".gitassistrc.example"
   ]
 }

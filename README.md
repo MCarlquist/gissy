@@ -1,6 +1,6 @@
 # Git Assist
 
-An Open Source  CLI tool for enhanced git operations and repository management with automated workflows.
+A production-ready CLI tool for enhanced git operations and repository management with automated workflows.
 
 ## 🚀 Features
 
@@ -23,36 +23,21 @@ An Open Source  CLI tool for enhanced git operations and repository management w
 ### Global Installation (Recommended)
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd git-assist
-
-# Install dependencies
-npm install
-
-# Link globally
-npm link
+npm install -g git-assist
 ```
-
-After linking, you can use `git-assist` command from anywhere in your terminal.
 
 ### Local Development
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd git-assist
-
-# Install dependencies
+git clone https://github.com/exodus-tola-mindCoder/Git-Assist.git
+cd Git-Assist
 npm install
-
-# Run locally
-npm start
+npm link
 ```
 
 ## ⚙️ Configuration
 
-Create a `.gitassistrc` file in your project root to customize behavior:
+Create a `.gitassistrc` file in your project root:
 
 ```json
 {
@@ -67,26 +52,14 @@ Create a `.gitassistrc` file in your project root to customize behavior:
   "watchIgnore": [
     "*.tmp",
     "build/**",
-    "temp/**"
+    "dist/**"
   ]
 }
 ```
 
-### Configuration Options
-
-- **branch**: Target branch for pushes (default: "main")
-- **runTests**: Run tests before committing (default: true)
-- **runLint**: Run linting before committing (default: true)
-- **useAI**: Use OpenAI for commit message generation (default: false)
-- **autoCommit**: Automatically commit without user confirmation (default: false)
-- **autoPush**: Automatically push without user confirmation (default: false)
-- **testCommand**: Command to run tests (default: "npm run test")
-- **lintCommand**: Command to run linting (default: "npm run lint")
-- **watchIgnore**: Additional patterns to ignore during file watching
-
 ### Environment Variables
 
-For AI-powered commit messages, create a `.env` file:
+Create a `.env` file for OpenAI integration:
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key_here
@@ -99,134 +72,40 @@ OPENAI_API_KEY=your_openai_api_key_here
 ```bash
 # Show enhanced git status
 git-assist status
-git-assist s
 
 # Show repository information
 git-assist info
-git-assist i
 
 # List branches
 git-assist branch
-git-assist b
 
-# Show remote branches
+# List remote branches
 git-assist branch --remote
-git-assist b -r
-
-# Show all branches (local and remote)
-git-assist branch --all
-git-assist b -a
 
 # Start intelligent file watcher
 git-assist watch
-git-assist w
-
-# Watch with verbose output
-git-assist watch --verbose
-git-assist w -v
-
-# Watch with custom ignore patterns
-git-assist watch --ignore "*.tmp" "build/**"
 
 # Show help
 git-assist --help
-
-# Show version
-git-assist --version
 ```
 
-### Smart File Watcher Workflow
-
-The file watcher provides an automated development workflow:
-
-1. **File Change Detection**: Monitors all files except ignored patterns
-2. **Quality Checks**: Runs tests and linting automatically
-3. **Commit Message Generation**: Creates intelligent commit messages (AI or template-based)
-4. **User Confirmation**: Shows diff summary and asks for confirmation
-5. **Git Operations**: Stages, commits, and pushes changes
+### File Watcher Workflow
 
 ```bash
 $ git-assist watch
 👀 Git Assist - Enhanced File Watcher Started
 
 📁 Watching current directory for changes...
-🚫 Ignoring: .git/**, node_modules/**, dist/**, .DS_Store, *.log, .env*, coverage/**
-
 ⚙️  Configuration:
    Tests: ✅
    Linting: ✅
-   AI Commits: ❌
+   AI Commits: ✅
    Branch: main
 
 📝 Modified: src/index.js
-🔄 Processing file changes...
-
-📋 Running quality checks...
-🧪 Running tests...
-✅ Tests passed
-🔍 Running linter...
-✅ Linting passed
-
 ✅ All quality checks passed!
-
-💭 Generating commit message...
-✅ AI commit message generated
-
-📦 Ready to commit and push
-──────────────────────────────────────────────────
-📊 Changes: 15 lines added, 3 lines removed
-💬 Commit message: "feat: add file watcher with automated workflow"
-🌿 Target branch: main
-──────────────────────────────────────────────────
-Commit and push now? [Y/n] y
-
-🚀 Starting git workflow...
-📦 Staging all changes...
-✅ All changes staged
-💾 Committing changes...
-✅ Changes committed
-🚀 Pushing to main...
-✅ Changes pushed
-
-🎉 Successfully committed and pushed changes!
-```
-
-### Examples
-
-#### Enhanced Status
-```bash
-$ git-assist status
-🔍 Git Assist - Enhanced Status
-
-📍 Current branch: main
-📝 Changes detected:
-   📝 src/index.js
-   ➕ README.md
-   ❓ new-file.txt
-
-📤 Unpushed commits: 2
-```
-
-#### Repository Information
-```bash
-$ git-assist info
-📊 Git Assist - Repository Information
-
-📁 Repository: git-assist
-🌐 Origin: https://github.com/username/git-assist.git
-📍 Current branch: main
-📝 Last commit: a1b2c3d - Add new feature (John Doe, 2 hours ago)
-📈 Total commits: 42
-```
-
-#### Branch Management
-```bash
-$ git-assist branch
-🌿 Git Assist - Branch Information
-
-👉 main (current)
-📍 feature/new-ui
-📍 hotfix/bug-fix
+💭 AI commit message generated
+🚀 Successfully committed and pushed changes!
 ```
 
 ## 🏗️ Project Structure
@@ -242,83 +121,36 @@ git-assist/
 │   ├── commit-message.js      # AI and template commit messages
 │   ├── git-operations.js      # Git command wrappers
 │   ├── test-runner.js         # Test and lint execution
-│   └── user-interaction.js    # CLI user interaction utilities
+│   └── user-interaction.js    # CLI user interaction
 ├── .gitassistrc.example       # Example configuration
 ├── .env.example               # Example environment variables
 ├── package.json               # Package configuration
 └── README.md                  # Documentation
 ```
 
-## 🧩 Architecture
-
-- **ES Modules**: Modern JavaScript module system
-- **Commander.js**: Robust CLI framework
-- **Chalk**: Terminal styling and colors
-- **Chokidar**: Efficient file watching
-- **OpenAI**: AI-powered commit message generation
-- **Cosmiconfig**: Flexible configuration loading
-- **Modular Design**: Clean separation of concerns
-
 ## 🔧 Development
 
 ### Adding New Commands
 
 1. Open `src/index.js`
-2. Add a new command in the `createCommand()` function:
+2. Add a new command in the `createCommand()` function
+3. Implement the handler function
 
-```javascript
-program
-  .command('my-command')
-  .description('Description of my command')
-  .action(handleMyCommand);
-```
+### Configuration Options
 
-3. Implement the handler function:
-
-```javascript
-async function handleMyCommand() {
-  console.log(chalk.blue('My new command!'));
-}
-```
-
-### File Watcher Configuration
-
-The file watcher automatically ignores common directories and files:
-- `.git/**` - Git repository files
-- `node_modules/**` - Node.js dependencies
-- `dist/**` - Build output
-- `coverage/**` - Test coverage reports
-- `*.log` - Log files
-- `.env*` - Environment files
-
-You can add custom ignore patterns using the `--ignore` option or in your `.gitassistrc`:
-
-```bash
-git-assist watch --ignore "*.tmp" "build/**" "custom-folder/**"
-```
-
-### Testing
-
-```bash
-# Run the CLI locally
-npm start
-
-# Test specific commands
-npm start status
-npm start info
-npm start branch
-npm start watch
-```
+- **branch**: Target branch for pushes (default: "main")
+- **runTests**: Run tests before committing (default: true)
+- **runLint**: Run linting before committing (default: true)
+- **useAI**: Use OpenAI for commit message generation (default: false)
+- **autoCommit**: Automatically commit without user confirmation (default: false)
+- **autoPush**: Automatically push without user confirmation (default: false)
 
 ## 📦 Publishing
 
 To publish this CLI tool to npm:
 
-1. Update package.json with your details
-2. Build and test thoroughly
-3. Publish to npm:
-
 ```bash
+npm login
 npm publish
 ```
 
@@ -333,17 +165,3 @@ npm publish
 ## 📄 License
 
 MIT License - see LICENSE file for details
-
-## 🔮 Future Features
-
-- Interactive git operations
-- Git workflow automation
-- Repository health checks
-- Integration with popular git hosting services
-- Custom workflow templates
-- Slack/Discord notifications
-- Multi-repository management
-
----
-
-Built with ❤️ using Node.js and modern CLI best practices.
