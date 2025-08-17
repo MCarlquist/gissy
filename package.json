@@ -59,6 +59,6 @@
     "src/",
     "README.md",
     "LICENSE",
-    ".gitassistrc.example"
+    ".gissyrc.example.json"
   ]
 }

@@ -1,80 +1,43 @@
 import { cosmiconfigSync } from 'cosmiconfig';
 import chalk from 'chalk';
 
-/**
- * Default configuration values
- */
-const DEFAULT_CONFIG = {
+// The name of the tool, used for finding config files
+const moduleName = 'gissy';
+
+// Default configuration
+const defaultConfig = {
   branch: 'main',
   runTests: true,
   runLint: true,
   useAI: false,
-  autoCommit: false,
-  autoPush: false,
-  watchIgnore: [],
-  testCommand: 'npm run test',
-  lintCommand: 'npm run lint'
+  testCommand: 'npm test',
+  lintCommand: 'npm run lint',
+  watchIgnore: [], // User-defined ignores
 };
 
-/**
- * Load configuration from .gitassistrc file or use defaults
- * @returns {Object} Configuration object
- */
-export function loadConfig() {
-  const explorer = cosmiconfigSync('gitassist');
-  
-  try {
-    const result = explorer.search();
-    
-    if (result) {
-      console.log(chalk.green(`📋 Config loaded from: ${result.filepath}`));
-      return { ...DEFAULT_CONFIG, ...result.config };
-    } else {
-      console.log(chalk.yellow('📋 No config file found, using defaults'));
-      return DEFAULT_CONFIG;
-    }
-  } catch (error) {
-    console.error(chalk.red(`❌ Error loading config: ${error.message}`));
-    console.log(chalk.yellow('📋 Using default configuration'));
-    return DEFAULT_CONFIG;
-  }
-}
+// Initialize cosmiconfig to search for our config files
+const explorer = cosmiconfigSync(moduleName, {
+  searchPlaces: [
+    'package.json',
+    `.${moduleName}rc`,
+    `.${moduleName}rc.json`,
+    // For backward compatibility, also search for the old name
+    '.gitassistrc',
+    '.gitassistrc.json',
+  ],
+});
 
 /**
- * Validate configuration values
- * @param {Object} config - Configuration to validate
- * @returns {Object} Validated configuration
- */
-export function validateConfig(config) {
-  const validated = { ...config };
-  
-  // Ensure boolean values
-  validated.runTests = Boolean(validated.runTests);
-  validated.runLint = Boolean(validated.runLint);
-  validated.useAI = Boolean(validated.useAI);
-  validated.autoCommit = Boolean(validated.autoCommit);
-  validated.autoPush = Boolean(validated.autoPush);
-  
-  // Ensure arrays
-  if (!Array.isArray(validated.watchIgnore)) {
-    validated.watchIgnore = [];
-  }
-  
-  // Ensure strings
-  validated.branch = String(validated.branch || 'main');
-  validated.testCommand = String(validated.testCommand || 'npm run test');
-  validated.lintCommand = String(validated.lintCommand || 'npm run lint');
-  
-  return validated;
-}
-
-/**
- * Get the current configuration
- * @returns {Object} Current configuration
+ * Get the final configuration by merging defaults with user-defined config.
+ * @returns {object} The final configuration object.
  */
 export function getConfig() {
-  const config = loadConfig();
-  return validateConfig(config);
-}
+  const result = explorer.search();
+  const userConfig = result ? result.config : {};
 
-export { DEFAULT_CONFIG };
+  if (result && result.filepath.includes('gitassist')) {
+    console.log(chalk.yellow.bold(`\n[Gissy Warning] Found legacy '.gitassistrc' config file. Please rename it to '.gissyrc.json' for future compatibility.\n`));
+  }
+
+  return { ...defaultConfig, ...userConfig };
+}
