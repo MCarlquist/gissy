@@ -1,7 +1,7 @@
 {
   "branch": "main",
-  "runTests": true,
-  "runLint": true,
+  "runTests": false,
+  "runLint": false,
   "useAI": false,
   "autoCommit": false,
   "autoPush": false,
