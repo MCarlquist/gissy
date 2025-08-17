@@ -5,7 +5,8 @@ import { getConfig } from './config.js';
 import { runChecks, allChecksPassed } from './test-runner.js';
 import { generateCommitMessage } from './commit-message.js';
 import { stageAll, commit, push, getUnstagedDiff, hasChanges, getDiffStats } from './git-operations.js';
-import { askYesNo, confirmWithDetails } from './user-interaction.js';
+import { confirmWithDetails } from './user-interaction.js';
+import { printHeader } from './ui.js';
 
 /**
  * Start watching files in the current directory
@@ -35,7 +36,12 @@ export function startWatcher(options = {}) {
   // Combine default, config, and custom ignore patterns
   const ignorePatterns = [...defaultIgnorePatterns, ...config.watchIgnore, ...ignore];
 
-  console.log(chalk.blue.bold('👀 Git Assist - Enhanced File Watcher Started\n'));
+  printHeader('👀 Git Assist - Enhanced File Watcher');
+
+  if (verbose) {
+    console.log(chalk.gray('Verbose mode enabled'));
+  }
+
   console.log(chalk.green('📁 Watching current directory for changes...'));
   console.log(chalk.gray(`🚫 Ignoring: ${ignorePatterns.join(', ')}`));
   

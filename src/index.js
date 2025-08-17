@@ -4,6 +4,7 @@ import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 import { join, basename } from 'path';
 import { startWatcher } from './watcher.js';
+import { printHeader } from './ui.js';
 
 /**
  * Create the main CLI command
@@ -57,7 +58,7 @@ export function createCommand() {
  */
 async function handleStatus() {
   try {
-    console.log(chalk.blue.bold('🔍 Git Assist - Enhanced Status\n'));
+    printHeader('🔍 Git Assist - Enhanced Status');
     
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
@@ -104,7 +105,7 @@ async function handleStatus() {
  */
 async function handleInfo() {
   try {
-    console.log(chalk.blue.bold('📊 Git Assist - Repository Information\n'));
+    printHeader('📊 Git Assist - Repository Information');
 
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
@@ -155,7 +156,7 @@ async function handleInfo() {
  */
 async function handleBranch(options) {
   try {
-    console.log(chalk.blue.bold('🌿 Git Assist - Branch Information\n'));
+    printHeader('🌿 Git Assist - Branch Information');
 
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
@@ -196,26 +197,11 @@ async function handleBranch(options) {
  */
 async function handleWatch(options) {
   try {
-    const watcherOptions = {
-      verbose: options.verbose || false,
-      ignore: options.ignore || []
-    };
-
-    console.log(chalk.blue.bold('👀 Starting file watcher...\n'));
-    
-    if (options.verbose) {
-      console.log(chalk.gray('Verbose mode enabled'));
-    }
-    
-    if (options.ignore && options.ignore.length > 0) {
-      console.log(chalk.gray(`Additional ignore patterns: ${options.ignore.join(', ')}`));
-    }
-
-    const watcher = startWatcher(watcherOptions);
+    // Options from commander are passed directly to the watcher
+    startWatcher(options);
 
     // Keep the process alive
     console.log(chalk.yellow('Press Ctrl+C to stop watching...\n'));
-
   } catch (error) {
     console.error(chalk.red(`❌ Error starting watcher: ${error.message}`));
     process.exit(1);
