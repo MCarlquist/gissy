@@ -1,6 +1,6 @@
 # Git Assist
 
-A production-ready CLI tool for enhanced git operations and repository management with automated workflows.
+An Open Source  CLI tool for enhanced git operations and repository management with automated workflows.
 
 ## 🚀 Features
 
