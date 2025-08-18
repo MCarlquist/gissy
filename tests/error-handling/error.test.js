@@ -36,19 +36,15 @@ describe('Error Handling Tests', () => {
 
   describe('config.js error handling', () => {
     test('should handle missing config files gracefully', () => {
-      // This should not throw errors
       expect(() => getConfig()).not.toThrow();
     });
   });
 
   describe('test-runner.js error handling', () => {
     test('should handle missing test commands gracefully', () => {
-      // This should not throw errors
       expect(() => runTests('nonexistent-command')).not.toThrow();
     });
-
     test('should handle missing lint commands gracefully', () => {
-      // This should not throw errors
       expect(() => runLint('nonexistent-command')).not.toThrow();
     });
   });

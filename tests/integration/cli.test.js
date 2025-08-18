@@ -26,7 +26,6 @@ describe('Integration Tests for CLI Commands', () => {
       const { stdout } = await execAsync(`node ${cliPath} status --help`);
       expect(stdout).toContain('status');
     } catch (error) {
-      // Skip if not in git repo
       expect(error.code).toBeDefined();
     }
   });
@@ -36,7 +35,6 @@ describe('Integration Tests for CLI Commands', () => {
       const { stdout } = await execAsync(`node ${cliPath} info --help`);
       expect(stdout).toContain('info');
     } catch (error) {
-      // Skip if not in git repo
       expect(error.code).toBeDefined();
     }
   });
@@ -46,7 +44,6 @@ describe('Integration Tests for CLI Commands', () => {
       const { stdout } = await execAsync(`node ${cliPath} branch --help`);
       expect(stdout).toContain('branch');
     } catch (error) {
-      // Skip if not in git repo
       expect(error.code).toBeDefined();
     }
   });
@@ -56,7 +53,6 @@ describe('Integration Tests for CLI Commands', () => {
       const { stdout } = await execAsync(`node ${cliPath} watch --help`);
       expect(stdout).toContain('watch');
     } catch (error) {
-      // Skip if not in git repo
       expect(error.code).toBeDefined();
     }
   });

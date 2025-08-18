@@ -14,7 +14,7 @@ const customLogo = `
 
 const tagline = 'Your personal Git assistant';
 
-// Banner logo (full mode)
+// Banner logo 
 function bannerLogo() {
   return chalk.cyan(customLogo) + chalk.magentaBright(`\n       ${tagline}`);
 }

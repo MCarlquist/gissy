@@ -55,7 +55,7 @@ export function startWatcher(options = {}) {
 
   // Track file changes to debounce processing
   let changeTimeout;
-  let pendingChanges = new Set();
+  const pendingChanges = new Set();
 
   // Initialize watcher
   const watcher = chokidar.watch('.', {

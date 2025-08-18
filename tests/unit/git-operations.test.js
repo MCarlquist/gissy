@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-// eslint-disable-next-line no-unused-vars
 const __dirname = dirname(__filename);
 
 // Import the functions to test
@@ -75,7 +74,6 @@ describe('git-operations.js', () => {
       const originalDir = process.cwd();
       try {
         process.chdir(nonGitDir);
-        // Ensure we're not in a git repo by checking parent directories
         expect(isGitRepository()).toBe(false);
       } finally {
         process.chdir(originalDir);
@@ -131,7 +129,6 @@ describe('git-operations.js', () => {
         const branches = getBranches();
         expect(branches).toBeDefined();
       } catch (error) {
-        // Skip if git is not available
         expect(true).toBe(true);
       }
     });
@@ -148,7 +145,6 @@ describe('git-operations.js', () => {
         const status = getGitStatus();
         expect(status).toBeDefined();
       } catch (error) {
-        // Skip if git is not available
         expect(true).toBe(true);
       }
     });
@@ -164,7 +160,6 @@ describe('git-operations.js', () => {
         const hasChangesResult = hasChanges();
         expect(typeof hasChangesResult).toBe('boolean');
       } catch (error) {
-        // Skip if git is not available
         expect(true).toBe(true);
       }
     });
@@ -180,7 +175,6 @@ describe('git-operations.js', () => {
         const stats = getDiffStats();
         expect(stats).toBeDefined();
       } catch (error) {
-        // Skip if git is not available
         expect(true).toBe(true);
       }
     });

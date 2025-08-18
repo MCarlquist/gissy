@@ -30,7 +30,6 @@ describe('config.js', () => {
   });
 
   test('should handle missing config files gracefully', () => {
-    // This is a basic test to ensure the config module loads
     expect(true).toBe(true);
   });
 });
