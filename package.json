@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/index.js",
   "bin": {
-    "gissy": "./bin/gissy.js"
+    "gissy": "bin/gissy.js"
   },
   "scripts": {
     "start": "node bin/gissy.js",
@@ -30,7 +30,7 @@
   "author": "Exodus Tola (https://github.com/exodus-tola-mindCoder)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/exodus-tola-mindCoder/gissy.git"
+    "url": "git+https://github.com/exodus-tola-mindCoder/gissy.git"
   },
   "bugs": {
     "url": "https://github.com/exodus-tola-mindCoder/gissy/issues"

@@ -5,6 +5,7 @@ import { existsSync } from 'fs';
 import { join, basename } from 'path';
 import { startWatcher } from './watcher.js';
 import { printHeader } from './ui.js';
+import { SSHHandler } from './ssh-handler.js';
 
 /**
  * Create the main CLI command
@@ -49,6 +50,14 @@ export function createCommand() {
     .option('-v, --verbose', 'Enable verbose logging')
     .option('--ignore <patterns...>', 'Additional patterns to ignore')
     .action(handleWatch);
+
+  // SSH setup command
+  program
+    .command('ssh-setup')
+    .alias('ssh')
+    .description('Generate and setup SSH key for GitHub')
+    .argument('[email]', 'Email address for the SSH key')
+    .action(handleSSHSetup);
 
   return program;
 }
@@ -249,5 +258,35 @@ function getStatusIcon(statusCode) {
   return statusMap[statusCode] || chalk.gray('❓');
 }
 
+/**
+ * Handle the SSH setup command
+ */
+async function handleSSHSetup(email) {
+  try {
+    printHeader('🔐 Gissy - SSH Key Setup');
+
+    const sshHandler = new SSHHandler();
+
+    // Check for existing keys
+    const existingKeys = sshHandler.getExistingKeys();
+    if (existingKeys.length > 0) {
+      console.log(chalk.blue('📋 Existing SSH keys found:'));
+      existingKeys.forEach(key => {
+        console.log(chalk.gray(`  - ${key}`));
+      });
+    }
+
+    // Generate the SSH key
+    const result = await sshHandler.generateSSHKey(email);
+    if (result.success) {
+      sshHandler.displaySetupInstructions(result.publicKey);
+    } else {
+      console.log(chalk.red(`❌ ${result.message}`));
+    }
+  } catch (error) {
+    console.error(chalk.red(`❌ Error: ${error.message}`));
+  }
+}
+
 // Export for testing
-export { handleStatus, handleInfo, handleBranch, handleWatch, isGitRepository, getCurrentBranch };
+export { handleStatus, handleInfo, handleBranch, handleWatch, isGitRepository, getCurrentBranch, handleSSHSetup };
