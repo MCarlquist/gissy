@@ -1,31 +1,97 @@
-import { existsSync, unlinkSync, writeFileSync } from 'fs';
+import { describe, test, expect, beforeEach, afterEach } from '@jest/globals';
+import { existsSync, writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
-import { loadConfig } from '../../src/config';
 
-describe('Configuration Tests', () => {
-    const testConfigPath = join(__dirname, 'test.gitassistrc');
+describe('config.js', () => {
+  const testDir = join(__dirname, '../../test-config');
+  const configFile = join(testDir, '.gissyrc.json');
+  const oldConfigFile = join(testDir, '.gitassistrc');
 
-    afterEach(() => {
-        if (existsSync(testConfigPath)) {
-            unlinkSync(testConfigPath);
-        }
-    });
+  beforeEach(() => {
+    // Create test directory
+    if (!existsSync(testDir)) {
+      require('fs').mkdirSync(testDir, { recursive: true });
+    }
+  });
 
-    test('should load and validate .gitassistrc correctly', () => {
-        const configContent = {
-            apiKey: 'test-api-key',
-            model: 'gpt-3.5-turbo',
-            maxTokens: 100
-        };
-        writeFileSync(testConfigPath, JSON.stringify(configContent, null, 2));
+  afterEach(() => {
+    // Clean up config files
+    if (existsSync(configFile)) {
+      unlinkSync(configFile);
+    }
+    if (existsSync(oldConfigFile)) {
+      unlinkSync(oldConfigFile);
+    }
+  });
 
-        const config = loadConfig(testConfigPath);
-        expect(config.apiKey).toBe('test-api-key');
-        expect(config.model).toBe('gpt-3.5-turbo');
-        expect(config.maxTokens).toBe(100);
-    });
+  test('should load default configuration', () => {
+    const { getConfig } = require('../../src/config.js');
+    const config = getConfig();
+    
+    expect(config).toBeDefined();
+    expect(config.branch).toBe('main');
+    expect(config.runTests).toBe(true);
+    expect(config.runLint).toBe(true);
+    expect(config.useAI).toBe(false);
+  });
 
-    test('should handle missing .gitassistrc gracefully', () => {
-        expect(() => loadConfig('nonexistent-path')).toThrow();
-    });
+  test('should load configuration from .gissyrc.json', () => {
+    const testConfig = {
+      branch: 'develop',
+      runTests: false,
+      useAI: true,
+      testCommand: 'npm run test:unit'
+    };
+    
+    writeFileSync(configFile, JSON.stringify(testConfig, null, 2));
+    
+    // Change to test directory
+    const originalCwd = process.cwd();
+    process.chdir(testDir);
+    
+    const { getConfig } = require('../../src/config.js');
+    const config = getConfig();
+    
+    expect(config.branch).toBe('develop');
+    expect(config.runTests).toBe(false);
+    expect(config.useAI).toBe(true);
+    expect(config.testCommand).toBe('npm run test:unit');
+    
+    process.chdir(originalCwd);
+  });
+
+  test('should merge user config with defaults', () => {
+    const testConfig = {
+      branch: 'feature/test',
+      runTests: false
+    };
+    
+    writeFileSync(configFile, JSON.stringify(testConfig, null, 2));
+    
+    const originalCwd = process.cwd();
+    process.chdir(testDir);
+    
+    const { getConfig } = require('../../src/config.js');
+    const config = getConfig();
+    
+    expect(config.branch).toBe('feature/test');
+    expect(config.runTests).toBe(false);
+    expect(config.runLint).toBe(true); // Should use default
+    expect(config.useAI).toBe(false); // Should use default
+    
+    process.chdir(originalCwd);
+  });
+
+  test('should handle missing config file gracefully', () => {
+    const originalCwd = process.cwd();
+    process.chdir(testDir);
+    
+    const { getConfig } = require('../../src/config.js');
+    const config = getConfig();
+    
+    expect(config).toBeDefined();
+    expect(config.branch).toBe('main'); // Should use default
+    
+    process.chdir(originalCwd);
+  });
 });
