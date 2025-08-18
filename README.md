@@ -12,13 +12,10 @@
 
 ---
 
-**Gissy** is a smart command-line tool designed to automate your repetitive Git tasks. From providing an enhanced `git status` to watching your files, running tests, and generating AI-powered commit messages, Gissy is your personal Git assistant.
+**gissy** is a smart command-line tool designed to automate your repetitive Git tasks. From providing an enhanced `git status` to watching your files, running tests, and generating AI-powered commit messages, gissy is your personal Git assistant.
 
 ```
-   ____ _     _
-  / __/(_)___/ /__ ____
- / _/ / / __/  '_/(_-<
-/_/  /_/_/ /_/\_\/___/
+🚀 gissy — automate your GitHub workflows
 ```
 
 ## ✨ Key Features
@@ -129,12 +126,9 @@ The file watcher automatically:
 
 ```bash
 $ gissy watch
-👀 Gissy - Enhanced File Watcher Started
+👀 gissy - Enhanced File Watcher Started
 
-   ____ _     _
-  / __/(_)___/ /__ ____
- / _/ / / __/  '_/(_-<
-/_/  /_/_/ /_/\_\/___/
+🚀 gissy — automate your GitHub workflows
 
 📁 Watching current directory for changes...
 ⚙️  Configuration:
