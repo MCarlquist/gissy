@@ -1,20 +1,25 @@
-import figlet from "figlet";
 import chalk from "chalk";
 
 const compactLogo = chalk.magentaBright("🚀 gissy — automate your GitHub workflows");
 
+// Custom ASCII Art Logo for 'gissy'
+const customLogo = `
+    ██████╗ ██╗███████╗███████╗██╗   ██╗
+    ██╔════╝ ██║██╔════╝██╔════╝╚██╗ ██╔╝
+    ██║  ███╗██║███████╗███████╗ ╚████╔╝
+    ██║   ██║██║╚════██║╚════██║  ╚██╔╝
+    ╚██████╔╝██║███████║███████║   ██║
+     ╚═════╝ ╚═╝╚══════╝╚══════╝   ╚═╝
+`;
+
+const tagline = 'Your personal Git assistant';
+
 // Banner logo (full mode)
 function bannerLogo() {
-  return chalk.cyan(
-    figlet.textSync("gissy", {
-      font: "Slant", 
-      horizontalLayout: "default",
-      verticalLayout: "default",
-    })
-  );
+  return chalk.cyan(customLogo) + chalk.magentaBright(`\n       ${tagline}`);
 }
 
-export function printHeader(mode = "banner", commandTitle) {
+export function printHeader(commandTitle, mode = "banner") {
   if (mode === "compact") {
     console.log(compactLogo);
   } else {
