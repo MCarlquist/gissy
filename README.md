@@ -14,6 +14,13 @@
 
 **Gissy** is a smart command-line tool designed to automate your repetitive Git tasks. From providing an enhanced `git status` to watching your files, running tests, and generating AI-powered commit messages, Gissy is your personal Git assistant.
 
+```
+   ____ _     _
+  / __/(_)___/ /__ ____
+ / _/ / / __/  '_/(_-<
+/_/  /_/_/ /_/\_\/___/
+```
+
 ## ✨ Key Features
 
 - **Enhanced Git Commands**: Clean, colorful, and informative outputs for `status`, `info`, and `branch` commands
@@ -124,6 +131,11 @@ The file watcher automatically:
 $ gissy watch
 👀 Gissy - Enhanced File Watcher Started
 
+   ____ _     _
+  / __/(_)___/ /__ ____
+ / _/ / / __/  '_/(_-<
+/_/  /_/_/ /_/\_\/___/
+
 📁 Watching current directory for changes...
 ⚙️  Configuration:
    Tests: ✅
@@ -221,21 +233,6 @@ npm test
 # Run specific test suites
 npm test -- tests/unit/
 ```
-
-## 📦 Publishing
-
-### NPM Publishing
-```bash
-npm login
-npm publish
-```
-
-### Pre-publish Checklist
-- [ ] All tests pass
-- [ ] Version updated in package.json
-- [ ] README.md updated
-- [ ] CHANGELOG.md updated (if applicable)
-- [ ] No sensitive data in package
 
 ## 🤝 Contributing
 
