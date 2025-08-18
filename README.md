@@ -142,7 +142,9 @@ $ gissy watch
 ⚙️  Configuration:
    Tests: ✅
    Linting: ✅
-   AI Commits: ✅
+   AI Commits: ❌
+   Auto Commit: ❌
+   Auto Push: ❌
    Branch: main
 
 📝 Modified: src/index.js

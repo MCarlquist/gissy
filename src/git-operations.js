@@ -1,5 +1,7 @@
 import { execSync, spawnSync } from 'child_process';
 import chalk from 'chalk';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 /**
  * Check if the current directory is a git repository.
@@ -7,8 +9,18 @@ import chalk from 'chalk';
  */
 export function isGitRepository() {
   try {
-    execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore', encoding: 'utf-8' });
-    return true;
+    // First, check if .git directory exists in the current working directory
+    const gitDir = join(process.cwd(), '.git');
+    if (existsSync(gitDir)) {
+      return true;
+    }
+    
+    // Check if we're in a git repository and get the root path
+    const gitRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf-8', stdio: 'pipe' }).trim();
+    const currentDir = process.cwd();
+    
+    // Only return true if the git root is exactly the current directory
+    return gitRoot === currentDir;
   } catch (error) {
     return false;
   }
@@ -51,22 +63,41 @@ export function getRepoInfo() {
     return null;
   }
   try {
-    const repoUrl = execSync('git remote get-url origin', { encoding: 'utf-8' }).trim();
-    const repoName = repoUrl.split('/').pop().replace('.git', '');
+    let repoUrl = '';
+    try {
+      repoUrl = execSync('git remote get-url origin', { encoding: 'utf-8' }).trim();
+    } catch (remoteError) {
+      // Handle case where origin remote doesn't exist
+      repoUrl = 'No remote configured';
+    }
+    
+    const repoName = repoUrl === 'No remote configured' ? 'local-repo' : repoUrl.split('/').pop().replace('.git', '');
     const branch = getCurrentBranch();
-    // Using a custom format for a clean, one-line output.
-    const lastCommit = execSync("git log -1 --pretty=format:'%h - %s (%an, %ar)'", { encoding: 'utf-8' }).trim();
-    const totalCommits = execSync('git rev-list --all --count', { encoding: 'utf-8' }).trim();
+    
+    let lastCommit = '';
+    let totalCommits = 0;
+    
+    try {
+      lastCommit = execSync("git log -1 --pretty=format:'%h - %s (%an, %ar)'", { encoding: 'utf-8' }).trim();
+      totalCommits = parseInt(execSync('git rev-list --all --count', { encoding: 'utf-8' }).trim(), 10);
+    } catch (logError) {
+      // Handle case where there are no commits yet
+      lastCommit = 'No commits yet';
+      totalCommits = 0;
+    }
 
     return {
       name: repoName,
       origin: repoUrl,
       branch,
       lastCommit,
-      totalCommits: parseInt(totalCommits, 10),
+      totalCommits,
     };
   } catch (error) {
-    console.error(chalk.red(`❌ Failed to get repository info: ${error.message}`));
+    // Don't log error in test environments
+    if (process.env.NODE_ENV !== 'test') {
+      console.error(chalk.red(`❌ Failed to get repository info: ${error.message}`));
+    }
     return null;
   }
 }

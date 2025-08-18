@@ -1,7 +1,7 @@
 {
   "name": "gissy",
   "version": "1.0.0",
-  "description": "A production-ready CLI tool for enhanced git operations and repository management with automated workflows",
+  "description": "gissy is a smart command-line tool designed to automate your repetitive Git tasks",
   "type": "module",
   "main": "src/index.js",
   "bin": {
@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node bin/gissy.js",
-    "test": "echo \"Tests not yet implemented, but Jest is set up!\" && exit 0",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write \"src/**/*.js\" \"*.md\""

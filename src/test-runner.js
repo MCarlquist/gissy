@@ -51,24 +51,31 @@ function runCommand(command, args = [], options = {}) {
  * @returns {Promise<boolean>} True if tests pass
  */
 export async function runTests(testCommand = 'npm run test') {
-  console.log(chalk.blue('🧪 Running tests...'));
+  // Skip console output during tests
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(chalk.blue('🧪 Running tests...'));
+  }
   
   const [command, ...args] = testCommand.split(' ');
   const result = await runCommand(command, args);
   
   if (result.success) {
-    console.log(chalk.green('✅ Tests passed'));
-    if (result.output) {
-      console.log(chalk.gray(result.output));
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(chalk.green('✅ Tests passed'));
+      if (result.output) {
+        console.log(chalk.gray(result.output));
+      }
     }
     return true;
   } else {
-    console.log(chalk.red('❌ Tests failed'));
-    if (result.error) {
-      console.log(chalk.red(result.error));
-    }
-    if (result.output) {
-      console.log(chalk.gray(result.output));
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(chalk.red('❌ Tests failed'));
+      if (result.error) {
+        console.log(chalk.red(result.error));
+      }
+      if (result.output) {
+        console.log(chalk.gray(result.output));
+      }
     }
     return false;
   }
@@ -80,24 +87,31 @@ export async function runTests(testCommand = 'npm run test') {
  * @returns {Promise<boolean>} True if linting passes
  */
 export async function runLint(lintCommand = 'npm run lint') {
-  console.log(chalk.blue('🔍 Running linter...'));
+  // Skip console output during tests
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(chalk.blue('🔍 Running linter...'));
+  }
   
   const [command, ...args] = lintCommand.split(' ');
   const result = await runCommand(command, args);
   
   if (result.success) {
-    console.log(chalk.green('✅ Linting passed'));
-    if (result.output) {
-      console.log(chalk.gray(result.output));
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(chalk.green('✅ Linting passed'));
+      if (result.output) {
+        console.log(chalk.gray(result.output));
+      }
     }
     return true;
   } else {
-    console.log(chalk.red('❌ Linting failed'));
-    if (result.error) {
-      console.log(chalk.red(result.error));
-    }
-    if (result.output) {
-      console.log(chalk.gray(result.output));
+    if (process.env.NODE_ENV !== 'test') {
+      console.log(chalk.red('❌ Linting failed'));
+      if (result.error) {
+        console.log(chalk.red(result.error));
+      }
+      if (result.output) {
+        console.log(chalk.gray(result.output));
+      }
     }
     return false;
   }
