@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@exodus-tola-mindcoder/gissy"><img src="https://img.shields.io/npm/v/@exodus-tola-mindcoder/gissy.svg" alt="NPM Version"></a>
-  <a href="https://github.com/exodus-tola-mindCoder/Git-Assist/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="https://www.npmjs.com/package/gissy"><img src="https://img.shields.io/npm/v/gissy.svg" alt="NPM Version"></a>
+  <a href="https://github.com/exodus-tola-mindCoder/gissy/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
 ---
@@ -41,13 +41,13 @@
 
 ### Global Installation (Recommended)
 ```bash
-npm install -g @exodus-tola-mindcoder/gissy
+npm install -g gissy
 ```
 
 ### Local Development
 ```bash
-git clone https://github.com/exodus-tola-mindCoder/Git-Assist.git
-cd Git-Assist
+git clone https://github.com/exodus-tola-mindCoder/gissy
+cd gissy
 npm install
 npm link  # Creates global symlink for local development
 ```
@@ -205,8 +205,8 @@ gissy/
 
 ### Development Setup
 ```bash
-git clone https://github.com/exodus-tola-mindCoder/Git-Assist.git
-cd Git-Assist
+git clone https://github.com/exodus-tola-mindCoder/gissy.git
+cd gissy
 npm install
 npm link  # For global CLI access during development
 ```
@@ -268,13 +268,13 @@ npm config get prefix
 
 **Permission errors on macOS/Linux**
 ```bash
-sudo npm install -g @exodus-tola-mindcoder/gissy
+sudo npm install -g gissy
 ```
 
 **Windows issues**
 ```bash
 # Run as administrator or use Windows Terminal
-npm install -g @exodus-tola-mindcoder/gissy
+npm install -g gissy
 ```
 
 ### Debug Mode
@@ -293,3 +293,35 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - Configuration via [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig)
 - AI integration with [OpenAI](https://openai.com)
 - Colorful output with [Chalk](https://github.com/chalk/chalk)
+
+## 🚀 Roadmap
+
+We have big plans for gissy! Here are some of the features we're looking to add in the future.
+
+### 1. **Advanced Configuration**
+- [ ] Custom commit message templates
+- [ ] Multi-repository support
+- [ ] Custom Git hooks
+
+### 2. **Enhanced AI**
+- [ ] AI model selection
+- [ ] Commit message validation
+- [ ] User preference learning
+
+### 3. **Platform Integration**
+- [ ] Bitbucket pipeline support
+- [ ] Azure DevOps integration
+
+### 4. **User Experience**
+- [ ] Color themes
+- [ ] Progress bars for long-running tasks
+- [ ] Detailed logging options
+
+## ✍️ Author
+
+**Exodus Tola**
+
+- **GitHub**: [@exodus-tola-mindCoder](https://github.com/exodus-tola-mindCoder)
+- **LinkedIn**: [Exodus Tola](https://www.linkedin.com/in/exodus-tola) 
+- **X (Twitter)**: [@Exodus_Tola](https://x.com/Exodus_Tola)
+- **Telegram**: [@Exodus_Tola](https://t.me/Exodus_Tola)

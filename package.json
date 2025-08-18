@@ -1,5 +1,5 @@
 {
-  "name": "@exodus-tola-mindcoder/gissy",
+  "name": "gissy",
   "version": "1.0.0",
   "description": "A production-ready CLI tool for enhanced git operations and repository management with automated workflows",
   "type": "module",
@@ -25,7 +25,7 @@
     "watcher"
   ],
   "license": "MIT",
-  "author": "Exodus Tola <exodus-tola-mindCoder@github.com>",
+  "author": "Exodus Tola (https://github.com/exodus-tola-mindCoder)",
   "repository": {
     "type": "git",
     "url": "https://github.com/exodus-tola-mindCoder/gissy.git"
