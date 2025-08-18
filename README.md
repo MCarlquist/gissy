@@ -6,7 +6,6 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@exodus-tola-mindcoder/gissy"><img src="https://img.shields.io/npm/v/@exodus-tola-mindcoder/gissy.svg" alt="NPM Version"></a>
-  <a href="https://github.com/exodus-tola-mindCoder/Git-Assist/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@exodus-tola-mindcoder/gissy.svg" alt="License"></a>
   <a href="https://github.com/exodus-tola-mindCoder/Git-Assist/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
