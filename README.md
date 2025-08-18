@@ -150,14 +150,6 @@ git-assist/
 - **autoCommit**: Automatically commit without user confirmation (default: false)
 - **autoPush**: Automatically push without user confirmation (default: false)
 
-## 📦 Publishing
-
-To publish this CLI tool to npm:
-
-```bash
-npm login
-npm publish
-```
 
 ## 🤝 Contributing
 
