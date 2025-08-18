@@ -28,12 +28,12 @@
   "author": "Exodus Tola <exodus-tola-mindCoder@github.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/exodus-tola-mindCoder/Git-Assist.git"
+    "url": "https://github.com/exodus-tola-mindCoder/gissy.git"
   },
   "bugs": {
-    "url": "https://github.com/exodus-tola-mindCoder/Git-Assist/issues"
+    "url": "https://github.com/exodus-tola-mindCoder/gissy/issues"
   },
-  "homepage": "https://github.com/exodus-tola-mindCoder/Git-Assist#readme",
+  "homepage": "https://github.com/exodus-tola-mindCoder/gissy#readme",
   "dependencies": {
     "chalk": "^5.4.1",
     "chokidar": "^3.6.0",
