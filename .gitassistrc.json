@@ -2,9 +2,9 @@
   "branch": "main",
   "runTests": true,
   "runLint": true,
-  "useAI": false,
-  "autoCommit": false,
-  "autoPush": false,
+  "useAI": true,
+  "autoCommit": true,
+  "autoPush": true,
   "testCommand": "npm run test",
   "lintCommand": "npm run lint",
   "watchIgnore": [

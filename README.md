@@ -1,12 +1,19 @@
 # Gissy
 
+## ⭐ Give This Project a Star!
+
+If you find this project useful, please consider giving it a ⭐ on GitHub! Your support helps the project grow and reach more developers.
+
+[![GitHub stars](https://img.shields.io/github/stars/exodus-tola-mindCoder/gissy?style=social)](https://github.com/exodus-tola-mindCoder/gissy)
+
 <p align="center">
-  <strong>A powerful CLI assistant to supercharge your Git workflow.</strong>
+  <strong>A Sophesticated CLI assistant to supercharge your Git workflow with multi-AI provider support.</strong>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/gissy"><img src="https://img.shields.io/npm/v/gissy.svg" alt="NPM Version"></a>
   <a href="https://github.com/exodus-tola-mindCoder/gissy/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="#"><img src="https://img.shields.io/badge/AI-OpenAI%20%7C%20Gemini%20%7C%20Addis%20AI-blue.svg" alt="AI Providers"></a>
 </p>
 
 ---
@@ -31,7 +38,8 @@
 - **Enhanced Git Commands**: Clean, colorful, and informative outputs for `status`, `info`, and `branch` commands
 - **Intelligent File Watcher**: Automatically detects file changes in your repository
 - **Automated Workflow**: Runs your tests and linter, then stages, commits, and pushes your changes seamlessly
-- **AI-Powered Commits**: Leverages OpenAI to generate meaningful and conventional commit messages from your code diffs
+- **AI-Powered Commits**: Leverages multiple AI providers (OpenAI, Gemini, Addis AI) to generate meaningful and conventional commit messages from your code diffs
+- **Multi-AI Provider Support**: Choose from OpenAI, Google Gemini, or Addis AI for local language support
 - **Highly Configurable**: Customize every part of the workflow using a simple `.gissyrc.json` file in your project
 - **Zero-Config Ready**: Works out of the box with sensible defaults for most projects
 - **Cross-Platform**: Works on Windows, macOS, and Linux
@@ -42,6 +50,14 @@
 ### Global Installation (Recommended)
 ```bash
 npm install -g gissy
+```
+
+### Using npx (No Installation Required)
+```bash
+# Run gissy without installing
+npx gissy status
+npx gissy watch --use-ai
+npx gissy info
 ```
 
 ### Local Development
@@ -78,11 +94,77 @@ Create a `.gissyrc.json` file in your project root:
 }
 ```
 
-### Environment Variables
-Create a `.env` file for OpenAI integration:
+### AI Provider Configuration
+Gissy supports multiple AI providers for generating intelligent commit messages. Configure your preferred provider using environment variables:
+
+#### Environment Variables
+Create a `.env` file in your project root:
+
 ```bash
+# OpenAI (default priority)
 OPENAI_API_KEY=your_openai_api_key_here
+
+# Google Gemini
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# Addis AI (local languages support)
+ADDIS_AI_API_KEY=your_addis_ai_api_key_here
 ```
+
+#### Provider Priority
+The system automatically detects which AI provider to use based on available API keys in this priority order:
+1. **OpenAI** (if `OPENAI_API_KEY` is set)
+2. **Google Gemini** (if `GEMINI_API_KEY` is set)  
+3. **Addis AI** (if `ADDIS_AI_API_KEY` is set)
+
+#### AI Provider Features
+| Provider | Model | Languages | Special Features |
+|----------|--------|-----------|------------------|
+| **OpenAI** | GPT-3.5-turbo | English | Conventional commit format |
+| **Gemini** | gemini-pro | Multiple | Advanced AI generation |
+| **Addis AI** | addis-ai | Afaan Oromo, Amharic | Local language support |
+
+### Multi-AI Provider Support Guide
+
+#### Overview
+Gissy  supports multiple AI providers for generating intelligent commit messages, including OpenAI, Gemini, and Addis AI.
+
+#### Supported Providers
+
+1. **OpenAI** - Standard GPT models for general commit messages
+2. **Gemini** - Google's Gemini models for advanced AI generation
+3. **Addis AI** - Local language support for Afaan Oromo and Amharic
+
+#### Configuration Examples
+
+##### .env file
+```bash
+# For OpenAI
+OPENAI_API_KEY=sk-1234567890abcdef
+
+# For Gemini
+GEMINI_API_KEY=your-gemini-key-here
+
+# For Addis AI (local languages)
+ADDIS_AI_API_KEY=your-addis-ai-key-here
+```
+
+#### Features
+- **Multi-language support**: Addis AI supports Afaan Oromo and Amharic
+- **Automatic fallback**: Falls back to simple commit messages if no AI keys are available
+- **Zero-config ready**: Works without any API keys
+- **Cross-platform**: Works on Windows, macOS, and Linux
+
+#### Migration Guide
+##### From Single OpenAI to Multi-Provider
+1. Add new environment variables as needed
+2. No code changes required
+3. System automatically detects available providers
+
+##### Backward Compatibility
+- Existing OPENAI_API_KEY continues to work
+- No breaking changes to existing configurations
+- Fallback to simple commit messages when no keys are available
 
 ### Configuration Options
 | Option | Type | Default | Description |
@@ -90,7 +172,7 @@ OPENAI_API_KEY=your_openai_api_key_here
 | `branch` | string | "main" | Target branch for pushes |
 | `runTests` | boolean | true | Run tests before committing |
 | `runLint` | boolean | true | Run linting before committing |
-| `useAI` | boolean | false | Use OpenAI for commit messages |
+| `useAI` | boolean | false | Use AI for commit messages |
 | `autoCommit` | boolean | false | Skip confirmation for commits |
 | `autoPush` | boolean | false | Skip confirmation for pushes |
 | `testCommand` | string | "npm test" | Command to run tests |
@@ -120,8 +202,16 @@ gissy branch --all
 # Start intelligent file watcher
 gissy watch
 
+# Show which AI provider is being used
+gissy watch --verbose
+
 # Show help and all available commands
 gissy --help
+
+# Using npx (no installation required)
+npx gissy status
+npx gissy watch --use-ai
+npx gissy info
 ```
 
 ### File Watcher Workflow
@@ -164,6 +254,9 @@ gissy watch --ignore "*.tmp" "build/**"
 
 # Combined options
 gissy watch --verbose --ignore "*.log" "dist/**"
+
+# Using npx with all options
+npx gissy watch --verbose --use-ai --ignore "*.log"
 ```
 
 ## 🏗️ Project Structure
@@ -212,6 +305,7 @@ cd gissy
 npm install
 npm link  # For global CLI access during development
 ```
+/// Git Repository Detection - The isGitRepository() function has specific checks that might fail in edge cases
 
 ### Available Scripts
 ```bash
@@ -236,6 +330,9 @@ npm test
 
 # Run specific test suites
 npm test -- tests/unit/
+
+# Run AI provider tests
+npm test -- tests/unit/ai-providers.test.js
 ```
 
 ## 🤝 Contributing
@@ -282,6 +379,33 @@ npm install -g gissy
 ### Debug Mode
 ```bash
 DEBUG=gissy gissy status
+DEBUG=gissy gissy watch --verbose --use-ai
+```
+
+### AI Provider Issues
+```bash
+# Check which provider is being used
+gissy watch --verbose
+
+# Verify environment variables
+echo $OPENAI_API_KEY
+echo $GEMINI_API_KEY
+echo $ADDIS_AI_API_KEY
+
+# Test AI provider detection
+node -e "import('./src/commit-message.js').then(m => console.log(m.getAvailableProviders()))"
+```
+
+### Multi-AI Provider Troubleshooting
+
+#### Common Issues
+1. **No AI messages generated**: Check if any API keys are configured
+2. **Provider not detected**: Verify environment variable names
+3. **Language issues**: Ensure Addis AI key is set for local languages
+
+#### Debug Mode
+```bash
+DEBUG=gissy gissy watch --verbose
 ```
 
 ## 📄 License
@@ -306,7 +430,6 @@ We have big plans for gissy! Here are some of the features we're looking to add 
 - [ ] Custom Git hooks
 
 ### 2. **Enhanced AI**
-- [ ] AI model selection
 - [ ] Commit message validation
 - [ ] User preference learning
 

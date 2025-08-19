@@ -1,11 +1,11 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
-import { existsSync } from 'fs';
-import { join, basename } from 'path';
+import { basename } from 'path';
 import { startWatcher } from './watcher.js';
 import { printHeader } from './ui.js';
 import { SSHHandler } from './ssh-handler.js';
+import { isGitRepository, getCurrentBranch } from './git-operations.js';
 
 /**
  * Create the main CLI command
@@ -48,6 +48,7 @@ export function createCommand() {
     .alias('w')
     .description('Watch files for changes and log modifications')
     .option('-v, --verbose', 'Enable verbose logging')
+    .option('--use-ai', 'Use AI for commit message generation')
     .option('--ignore <patterns...>', 'Additional patterns to ignore')
     .action(handleWatch);
 
@@ -217,25 +218,7 @@ async function handleWatch(options) {
   }
 }
 
-/**
- * Check if current directory is a git repository
- * @returns {boolean}
- */
-function isGitRepository() {
-  return existsSync(join(process.cwd(), '.git'));
-}
-
-/**
- * Get the current git branch
- * @returns {string}
- */
-function getCurrentBranch() {
-  try {
-    return execSync('git branch --show-current', { encoding: 'utf-8' }).trim();
-  } catch (error) {
-    return 'unknown';
-  }
-}
+// Functions are now imported from git-operations.js
 
 /**
  * Get status icon for git status code
