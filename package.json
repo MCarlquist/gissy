@@ -1,6 +1,6 @@
 {
   "name": "gissy",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An intelligent CLI assistant to automate your Git workflow with AI-powered commits, file watching, and multi-provider support (OpenAI, Gemini, Addis AI).",
   "type": "module",
   "main": "src/index.js",
