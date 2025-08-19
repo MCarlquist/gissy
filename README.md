@@ -66,14 +66,6 @@ npx gissy info
 npx gissy ssh
 ```
 
-### Local Development
-```bash
-git clone https://github.com/exodus-tola-mindCoder/gissy
-cd gissy
-npm install
-npm link  # Creates global symlink for local development
-```
-
 ## ⚙️ Configuration
 
 ### Basic Configuration
@@ -268,6 +260,10 @@ gissy watch --verbose --ignore "*.log" "dist/**"
 npx gissy watch --verbose --use-ai --ignore "*.log"
 ```
 
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) file for detailed information on how to get started, development setup, and contribution guidelines.
 
 ## 📄 License
 
