@@ -1,7 +1,7 @@
 {
   "name": "gissy",
-  "version": "1.0.0",
-  "description": "gissy is a smart command-line tool designed to automate your repetitive Git tasks",
+  "version": "1.2.0",
+  "description": "An intelligent CLI assistant to automate your Git workflow with AI-powered commits, file watching, and multi-provider support (OpenAI, Gemini, Addis AI).",
   "type": "module",
   "main": "src/index.js",
   "bin": {

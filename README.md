@@ -1,13 +1,11 @@
 # Gissy
 
-## ⭐ Give This Project a Star!
-
-If you find this project useful, please consider giving it a ⭐ on GitHub! Your support helps the project grow and reach more developers.
+If you find this project useful, please consider giving it a ⭐! Your support helps the project grow and reach more developers.
 
 [![GitHub stars](https://img.shields.io/github/stars/exodus-tola-mindCoder/gissy?style=social)](https://github.com/exodus-tola-mindCoder/gissy)
 
 <p align="center">
-  <strong>A Sophesticated CLI assistant to supercharge your Git workflow with multi-AI provider support.</strong>
+  <strong>A sophisticated CLI assistant to supercharge your Git workflow, powered by multiple AI providers.</strong>
 </p>
 
 <p align="center">
@@ -16,9 +14,13 @@ If you find this project useful, please consider giving it a ⭐ on GitHub! Your
   <a href="#"><img src="https://img.shields.io/badge/AI-OpenAI%20%7C%20Gemini%20%7C%20Addis%20AI-blue.svg" alt="AI Providers"></a>
 </p>
 
+<p align="center">
+  <strong>This tool is proudly sponsored by <a href="https://platform.addisassistant.com/">Addis AI</a>.</strong>
+</p>
+
 ---
 
-**gissy** is a smart command-line tool designed to automate your repetitive Git tasks. From providing an enhanced `git status` to watching your files, running tests, and generating AI-powered commit messages, gissy is your personal Git assistant.
+**gissy** is an intelligent command-line tool that automates your most repetitive Git tasks. From providing an enhanced `git status` to watching your files, running quality checks, and generating insightful, AI-powered commit messages, gissy acts as your personal Git assistant so you can focus on coding.
 
 <p align="center">
 <pre>
@@ -35,14 +37,15 @@ If you find this project useful, please consider giving it a ⭐ on GitHub! Your
 
 ## ✨ Key Features
 
-- **Enhanced Git Commands**: Clean, colorful, and informative outputs for `status`, `info`, and `branch` commands
 - **Intelligent File Watcher**: Automatically detects file changes in your repository
 - **Automated Workflow**: Runs your tests and linter, then stages, commits, and pushes your changes seamlessly
+- **SSH Key Setup**: Automatic SSH key generation and GitHub configuration for seamless authentication
 - **AI-Powered Commits**: Leverages multiple AI providers (OpenAI, Gemini, Addis AI) to generate meaningful and conventional commit messages from your code diffs
 - **Multi-AI Provider Support**: Choose from OpenAI, Google Gemini, or Addis AI for local language support
 - **Highly Configurable**: Customize every part of the workflow using a simple `.gissyrc.json` file in your project
 - **Zero-Config Ready**: Works out of the box with sensible defaults for most projects
 - **Cross-Platform**: Works on Windows, macOS, and Linux
+- **Enhanced Git Commands**: Clean, colorful, and informative outputs for `status`, `info`, and `branch` commands
 - **TypeScript Ready**: Built with modern JavaScript (ES modules) for better performance
 
 ## 🛠️ Installation
@@ -56,8 +59,9 @@ npm install -g gissy
 ```bash
 # Run gissy without installing
 npx gissy status
-npx gissy watch --use-ai
+npx gissy watch
 npx gissy info
+npx gissy ssh
 ```
 
 ### Local Development
@@ -205,6 +209,9 @@ gissy watch
 # Show which AI provider is being used
 gissy watch --verbose
 
+# Generate and setup SSH key for GitHub
+gissy ssh 
+
 # Show help and all available commands
 gissy --help
 
@@ -270,6 +277,7 @@ gissy/
 │   ├── git-operations.js      # Git command wrappers and utilities
 │   ├── config.js              # Configuration management with cosmiconfig
 │   ├── commit-message.js      # AI-powered and fallback commit message generation
+│   ├── ssh-handler.js         # SSH key generation and GitHub configuration
 │   ├── watcher.js             # File watching with chokidar
 │   ├── test-runner.js         # Test and lint execution with proper error handling
 │   ├── user-interaction.js    # CLI prompts and confirmations
