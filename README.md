@@ -10,6 +10,7 @@ If you find this project useful, please consider giving it a ⭐! Your support h
 
 <p align="center">
   <a href="https://www.npmjs.com/package/gissy"><img src="https://img.shields.io/npm/v/gissy.svg" alt="NPM Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://github.com/exodus-tola-mindCoder/gissy/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
   <a href="#"><img src="https://img.shields.io/badge/AI-OpenAI%20%7C%20Gemini%20%7C%20Addis%20AI-blue.svg" alt="AI Providers"></a>
 </p>
@@ -20,7 +21,7 @@ If you find this project useful, please consider giving it a ⭐! Your support h
 
 ---
 
-**gissy** is an intelligent command-line tool that automates your most repetitive Git tasks. From providing an enhanced `git status` to watching your files, running quality checks, and generating insightful, AI-powered commit messages, gissy acts as your personal Git assistant so you can focus on coding.
+**gissy** is an intelligent, open-source command-line tool that automates your most repetitive Git tasks. From providing an enhanced `git status` to watching your files, running quality checks, and generating insightful, AI-powered commit messages, gissy acts as your personal Git assistant so you can focus on coding.
 
 <p align="center">
 <pre>
@@ -37,6 +38,7 @@ If you find this project useful, please consider giving it a ⭐! Your support h
 
 ## ✨ Key Features
 
+- **Open Source**: Free to use, licensed under MIT, and open to community contributions.
 - **Intelligent File Watcher**: Automatically detects file changes in your repository
 - **Automated Workflow**: Runs your tests and linter, then stages, commits, and pushes your changes seamlessly
 - **SSH Key Setup**: Automatic SSH key generation and GitHub configuration for seamless authentication
@@ -266,155 +268,6 @@ gissy watch --verbose --ignore "*.log" "dist/**"
 npx gissy watch --verbose --use-ai --ignore "*.log"
 ```
 
-## 🏗️ Project Structure
-
-```
-gissy/
-├── bin/
-│   └── gissy.js               # CLI entry point
-├── src/
-│   ├── index.js               # Main CLI commands and program setup
-│   ├── git-operations.js      # Git command wrappers and utilities
-│   ├── config.js              # Configuration management with cosmiconfig
-│   ├── commit-message.js      # AI-powered and fallback commit message generation
-│   ├── ssh-handler.js         # SSH key generation and GitHub configuration
-│   ├── watcher.js             # File watching with chokidar
-│   ├── test-runner.js         # Test and lint execution with proper error handling
-│   ├── user-interaction.js    # CLI prompts and confirmations
-│   └── ui.js                  # UI utilities and ASCII art
-├── tests/
-│   ├── unit/
-│   │   └── git-operations.test.js
-│   ├── integration/
-│   │   └── cli.test.js
-│   ├── config/
-│   │   └── config.test.js
-│   └── error-handling/
-│       └── error.test.js
-├── .gissyrc.example.json      # Configuration template
-├── .env.example               # Environment variables template
-├── package.json               # NPM package configuration
-├── package-lock.json          # Dependency lock file
-├── LICENSE                    # MIT License
-└── README.md                  # This documentation
-```
-
-## 🔧 Development
-
-### Prerequisites
-- Node.js v16+
-- Git
-- NPM
-
-### Development Setup
-```bash
-git clone https://github.com/exodus-tola-mindCoder/gissy.git
-cd gissy
-npm install
-npm link  # For global CLI access during development
-```
-/// Git Repository Detection - The isGitRepository() function has specific checks that might fail in edge cases
-
-### Available Scripts
-```bash
-npm start          # Run CLI directly
-npm test           # Run test suite
-npm run lint       # Lint source code
-npm run lint:fix   # Fix linting issues
-npm run format     # Format code with prettier
-```
-
-### Adding New Commands
-1. Open `src/index.js`
-2. Add new command in `createCommand()` function
-3. Implement handler function
-4. Add tests in appropriate test directory
-5. Update documentation
-
-### Testing
-```bash
-# Run all tests
-npm test
-
-# Run specific test suites
-npm test -- tests/unit/
-
-# Run AI provider tests
-npm test -- tests/unit/ai-providers.test.js
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Make your changes**
-4. **Add tests** for new functionality
-5. **Run tests** (`npm test`)
-6. **Lint your code** (`npm run lint`)
-7. **Format your code** (`npm run format`)
-8. **Submit a pull request**
-
-### Contribution Guidelines
-- Follow conventional commit messages
-- Add tests for new features
-- Update documentation
-- Ensure all CI checks pass
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Command not found after npm install -g**
-```bash
-# Check if global bin is in PATH
-npm config get prefix
-# Add to PATH if needed
-```
-
-**Permission errors on macOS/Linux**
-```bash
-sudo npm install -g gissy
-```
-
-**Windows issues**
-```bash
-# Run as administrator or use Windows Terminal
-npm install -g gissy
-```
-
-### Debug Mode
-```bash
-DEBUG=gissy gissy status
-DEBUG=gissy gissy watch --verbose --use-ai
-```
-
-### AI Provider Issues
-```bash
-# Check which provider is being used
-gissy watch --verbose
-
-# Verify environment variables
-echo $OPENAI_API_KEY
-echo $GEMINI_API_KEY
-echo $ADDIS_AI_API_KEY
-
-# Test AI provider detection
-node -e "import('./src/commit-message.js').then(m => console.log(m.getAvailableProviders()))"
-```
-
-### Multi-AI Provider Troubleshooting
-
-#### Common Issues
-1. **No AI messages generated**: Check if any API keys are configured
-2. **Provider not detected**: Verify environment variable names
-3. **Language issues**: Ensure Addis AI key is set for local languages
-
-#### Debug Mode
-```bash
-DEBUG=gissy gissy watch --verbose
-```
 
 ## 📄 License
 
