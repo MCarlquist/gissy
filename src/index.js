@@ -16,7 +16,7 @@ export function createCommand() {
 
   program
     .name('gissy')
-    .description('A production-ready CLI tool for git assistance')
+    .description('A Sophisticated CLI tool for git assistance')
     .version('1.0.0');
 
   // Status command
@@ -69,7 +69,7 @@ export function createCommand() {
 async function handleStatus() {
   try {
     printHeader('🔍 Gissy - Enhanced Status');
-    
+
     if (!isGitRepository()) {
       console.log(chalk.red('❌ This is not a git repository'));
       process.exit(1);
@@ -81,7 +81,7 @@ async function handleStatus() {
 
     // Get git status
     const status = execSync('git status --porcelain', { encoding: 'utf-8' });
-    
+
     if (status.trim() === '') {
       console.log(chalk.green('✅ Working directory clean'));
     } else {
@@ -186,7 +186,7 @@ async function handleBranch(options) {
     branchLines.forEach(line => {
       const isCurrentBranch = line.startsWith('*');
       const branchName = line.replace(/^\*?\s+/, '').replace(/^remotes\//, '');
-      
+
       if (isCurrentBranch) {
         console.log(chalk.green(`👉 ${chalk.bold(branchName)} (current)`));
       } else if (line.includes('remotes/')) {
