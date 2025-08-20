@@ -16,7 +16,7 @@ export function createCommand() {
 
   program
     .name('gissy')
-    .description('A production-ready CLI tool for git assistance')
+    .description('A Sophisticated CLI tool for git assistance')
     .version('1.0.0');
 
   // Status command
