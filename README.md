@@ -275,6 +275,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - File watching powered by [Chokidar](https://github.com/paulmillr/chokidar)
 - Configuration via [Cosmiconfig](https://github.com/davidtheclark/cosmiconfig)
 - AI integration with [OpenAI](https://openai.com)
+[OpenAI](https://addisassistant.com/exodus)
 - Colorful output with [Chalk](https://github.com/chalk/chalk)
 
 ## 🚀 Roadmap
