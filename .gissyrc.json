@@ -2,7 +2,7 @@
   "branch": "main",
   "runTests": true,
   "runLint": true,
-  "useAI": false,
+  "useAI": true,
   "autoCommit": false,
   "autoPush": false,
   "testCommand": "npm run test",
